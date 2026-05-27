@@ -1,2 +1,6 @@
 flask>=3.0.0
 requests>=2.31.0
+paho-mqtt>=1.6.1
+gpiozero>=1.6.2
+# pybluez>=0.30   # Solo para Bluetooth (opcional, requiere drivers del SO)
+# Adafruit-DHT    # Solo para sensor DHT11 real (opcional, requiere Pi)
