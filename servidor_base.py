@@ -32,7 +32,146 @@ actuadores = {
 
 @app.route("/")
 def home():
-    return "<h1>API IoT - Raspberry Pi Zero</h1><p>Endpoints: /status, /sensores, /sensor/&lt;nombre&gt;, /actuadores, /actuador/&lt;nombre&gt;, /docs</p>"
+    return """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API IoT - Raspberry Pi Zero</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0a0f1e;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 700px; margin: auto; }
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 2rem;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border-radius: 16px;
+      border: 1px solid #1e3a5f;
+    }
+    .badge {
+      display: inline-block;
+      background: #22d3ee22;
+      color: #22d3ee;
+      border: 1px solid #22d3ee44;
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+    h1 span { color: #38bdf8; }
+    .subtitle { color: #64748b; font-size: 0.9rem; }
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #475569;
+      margin: 2rem 0 0.75rem;
+    }
+    .endpoint {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1.2rem;
+      background: #111827;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .endpoint:hover { background: #1e293b; border-color: #38bdf8; }
+    .method {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 5px;
+      min-width: 44px;
+      text-align: center;
+    }
+    .get  { background: #14532d; color: #4ade80; }
+    .post { background: #1e3a5f; color: #38bdf8; }
+    .path { font-family: monospace; font-size: 0.95rem; flex: 1; }
+    .desc { color: #64748b; font-size: 0.82rem; }
+    .footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: #334155;
+      font-size: 0.8rem;
+    }
+    .dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="badge">&#x2022; En l&iacute;nea</div>
+    <h1>API IoT &mdash; <span>Raspberry Pi Zero</span></h1>
+    <p class="subtitle"><span class="dot"></span>Servidor activo &bull; Puerto 5000 &bull; Clase 10</p>
+  </div>
+
+  <p class="section-title">Endpoints disponibles</p>
+
+  <a class="endpoint" href="/status">
+    <span class="method get">GET</span>
+    <span class="path">/status</span>
+    <span class="desc">Estado del servidor</span>
+  </a>
+  <a class="endpoint" href="/sensores">
+    <span class="method get">GET</span>
+    <span class="path">/sensores</span>
+    <span class="desc">Todos los sensores</span>
+  </a>
+  <a class="endpoint" href="/sensor/temperatura">
+    <span class="method get">GET</span>
+    <span class="path">/sensor/&lt;nombre&gt;</span>
+    <span class="desc">Un sensor espec&iacute;fico</span>
+  </a>
+  <a class="endpoint" href="/actuadores">
+    <span class="method get">GET</span>
+    <span class="path">/actuadores</span>
+    <span class="desc">Estado de actuadores</span>
+  </a>
+  <div class="endpoint">
+    <span class="method post">POST</span>
+    <span class="path">/actuador/&lt;nombre&gt;</span>
+    <span class="desc">Controlar un actuador</span>
+  </div>
+  <a class="endpoint" href="/docs">
+    <span class="method get">GET</span>
+    <span class="path">/docs</span>
+    <span class="desc">Documentaci&oacute;n completa</span>
+  </a>
+
+  <div class="footer">CEAER &mdash; Clase 10 &bull; Sistema IoT Base</div>
+</div>
+</body>
+</html>"""
 
 
 @app.route("/status")
